@@ -5,7 +5,8 @@ using namespace std;
 enum characterColours {
 	RED_WHITE,
 	YELLOW_GREEN,
-	ORANGE_PURPLE
+	ORANGE_PURPLE,
+	TOTAL_COLOURS
 };
 
 enum characterEmotions {
@@ -23,7 +24,8 @@ enum characterEmotions {
 	SAD,
 	SICK,
 	SPEECHLESS,
-	UPSET
+	UPSET,
+	TOTAL_EMOTIONS
 };
 
 class Character {
