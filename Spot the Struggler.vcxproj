@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="header\character.h" />
     <ClInclude Include="header\map.h" />
+    <ClInclude Include="header\player.h" />
     <ClInclude Include="header\timer.h" />
     <ClInclude Include="src\map.cpp" />
   </ItemGroup>
