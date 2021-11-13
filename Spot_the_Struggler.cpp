@@ -17,6 +17,10 @@ TTF_Font* gameFont;
 bool keyStates[TOTAL_KEYS];
 bool mouseStates[TOTAL_MOUSE_BUTTONS];
 
+SDL_Texture* redWhiteSprites[TOTAL_EMOTIONS];
+SDL_Texture* yellowGreenSprites[TOTAL_EMOTIONS];
+SDL_Texture* orangePurpleSprites[TOTAL_EMOTIONS];
+
 bool init() {
 	bool success = true;
 	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO) < 0)
@@ -67,6 +71,271 @@ bool init() {
 				}
 			}
 		}
+	}
+
+	return success;
+}
+
+bool loadSprite(SDL_Texture* spriteSheet[], std::string path)
+{
+	SDL_Texture* newTexture = NULL;
+
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+
+	if (loadedSurface == NULL)
+	{
+		printf("Failed to load image %s. IMG_ERROR: %s\n", path.c_str(), IMG_GetError());
+	}
+	else
+	{
+		SDL_SetColorKey(loadedSurface, 1, SDL_MapRGB(loadedSurface->format, 0, 0xFF, 0xFF));
+
+		newTexture = SDL_CreateTextureFromSurface(gameRenderer, loadedSurface);
+		if (newTexture == NULL)
+		{
+			printf("Failed to convert surface to texture. SDL_ERROR: %s \n", SDL_GetError());
+		}
+
+		SDL_FreeSurface(loadedSurface);
+	}
+
+	*spriteSheet = newTexture;
+	return spriteSheet != NULL;
+}
+
+bool loadCharacterSprites()
+{
+	bool success = true;
+
+	// Load sprites for red white characters
+	if (!loadSprite(&redWhiteSprites[ANGRY], "sprites/char1/angry.png"))
+	{
+		printf("Failed to load red white angry character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[ANGRY2], "sprites/char1/angry2.png"))
+	{
+		printf("Failed to load red white angry2 character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[ANNOYED], "sprites/char1/annoyed.png"))
+	{
+		printf("Failed to load red white annoyed character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[BASHFUL], "sprites/char1/bashful.png"))
+	{
+		printf("Failed to load red white bashful character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[CHILL], "sprites/char1/chill.png"))
+	{
+		printf("Failed to load red white chill character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[COPE], "sprites/char1/cope.png"))
+	{
+		printf("Failed to load red white cope character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[FLUSTERED], "sprites/char1/flustered.png"))
+	{
+		printf("Failed to load red white flustered character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[HAPPY], "sprites/char1/happy.png"))
+	{
+		printf("Failed to load red white happy character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[JOYFUL], "sprites/char1/joyful.png"))
+	{
+		printf("Failed to load red white joyful character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[LAUGHING], "sprites/char1/laughing.png"))
+	{
+		printf("Failed to load red white laughing character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[NERVOUS], "sprites/char1/nervous.png"))
+	{
+		printf("Failed to load red white nervous character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[SAD], "sprites/char1/sad.png"))
+	{
+		printf("Failed to load red white sad character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[SICK], "sprites/char1/sick.png"))
+	{
+		printf("Failed to load red white sick character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[SPEECHLESS], "sprites/char1/speechless.png"))
+	{
+		printf("Failed to load red white speechless character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&redWhiteSprites[UPSET], "sprites/char1/upset.png"))
+	{
+		printf("Failed to load red white upset character sprite.\n");
+		success = false;
+	}
+
+	// Load sprites for yellow green characters
+	if (!loadSprite(&yellowGreenSprites[ANGRY], "sprites/char2/angry.png"))
+	{
+		printf("Failed to load yellow green angry character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[ANGRY2], "sprites/char2/angry2.png"))
+	{
+		printf("Failed to load yellow green angry2 character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[ANNOYED], "sprites/char2/annoyed.png"))
+	{
+		printf("Failed to load yellow green annoyed character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[BASHFUL], "sprites/char2/bashful.png"))
+	{
+		printf("Failed to load yellow green bashful character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[CHILL], "sprites/char2/chill.png"))
+	{
+		printf("Failed to load yellow green chill character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[COPE], "sprites/char2/cope.png"))
+	{
+		printf("Failed to load yellow green cope character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[FLUSTERED], "sprites/char2/flustered.png"))
+	{
+		printf("Failed to load yellow green flustered character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[HAPPY], "sprites/char2/happy.png"))
+	{
+		printf("Failed to load yellow green happy character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[JOYFUL], "sprites/char2/joyful.png"))
+	{
+		printf("Failed to load yellow green joyful character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[LAUGHING], "sprites/char2/laughing.png"))
+	{
+		printf("Failed to load yellow green laughing character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[NERVOUS], "sprites/char2/nervous.png"))
+	{
+		printf("Failed to load yellow green nervous character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[SAD], "sprites/char2/sad.png"))
+	{
+		printf("Failed to load yellow green sad character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[SICK], "sprites/char2/sick.png"))
+	{
+		printf("Failed to load yellow green sick character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[SPEECHLESS], "sprites/char2/speechless.png"))
+	{
+		printf("Failed to load yellow green speechless character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&yellowGreenSprites[UPSET], "sprites/char2/upset.png"))
+	{
+		printf("Failed to load yellow green upset character sprite.\n");
+		success = false;
+	}
+
+	// Load sprites for orange purple characters
+	if (!loadSprite(&orangePurpleSprites[ANGRY], "sprites/char2/angry.png"))
+	{
+		printf("Failed to load orange purple angry character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[ANGRY2], "sprites/char2/angry2.png"))
+	{
+		printf("Failed to load orange purple angry2 character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[ANNOYED], "sprites/char2/annoyed.png"))
+	{
+		printf("Failed to load orange purple annoyed character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[BASHFUL], "sprites/char2/bashful.png"))
+	{
+		printf("Failed to load orange purple bashful character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[CHILL], "sprites/char2/chill.png"))
+	{
+		printf("Failed to load orange purple chill character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[COPE], "sprites/char2/cope.png"))
+	{
+		printf("Failed to load orange purple cope character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[FLUSTERED], "sprites/char2/flustered.png"))
+	{
+		printf("Failed to load orange purple flustered character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[HAPPY], "sprites/char2/happy.png"))
+	{
+		printf("Failed to load orange purple happy character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[JOYFUL], "sprites/char2/joyful.png"))
+	{
+		printf("Failed to load orange purple joyful character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[LAUGHING], "sprites/char2/laughing.png"))
+	{
+		printf("Failed to load orange purple laughing character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[NERVOUS], "sprites/char2/nervous.png"))
+	{
+		printf("Failed to load orange purple nervous character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[SAD], "sprites/char2/sad.png"))
+	{
+		printf("Failed to load orange purple sad character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[SICK], "sprites/char2/sick.png"))
+	{
+		printf("Failed to load orange purple sick character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[SPEECHLESS], "sprites/char2/speechless.png"))
+	{
+		printf("Failed to load orange purple speechless character sprite.\n");
+		success = false;
+	}
+	if (!loadSprite(&orangePurpleSprites[UPSET], "sprites/char2/upset.png"))
+	{
+		printf("Failed to load orange purple upset character sprite.\n");
+		success = false;
 	}
 
 	return success;
@@ -135,36 +404,43 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		bool quit = false;
-
-		SDL_Event e;
-
-		while (!quit)
+		if (!loadCharacterSprites())
 		{
-			while (SDL_PollEvent(&e) > 0)
-			{
-				switch (e.type)
-				{
-				case SDL_QUIT:
-					quit = true;
-					break;
-				case SDL_KEYDOWN:
-					setKeyState(e.key.keysym.sym, true);
-					break;
-				case SDL_KEYUP:
-					setKeyState(e.key.keysym.sym, false);
-					break;
-				case SDL_MOUSEBUTTONDOWN:
-					setMouseState(e.button, true);
-					break;
-				case SDL_MOUSEBUTTONUP:
-					setMouseState(e.button, false);
-					break;
-				}
-			}
+			printf("Failed to load character sprites.\n");
+		}
+		else
+		{
+			bool quit = false;
 
-			SDL_SetRenderDrawColor(gameRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-			SDL_RenderClear(gameRenderer);
+			SDL_Event e;
+
+			while (!quit)
+			{
+				while (SDL_PollEvent(&e) > 0)
+				{
+					switch (e.type)
+					{
+					case SDL_QUIT:
+						quit = true;
+						break;
+					case SDL_KEYDOWN:
+						setKeyState(e.key.keysym.sym, true);
+						break;
+					case SDL_KEYUP:
+						setKeyState(e.key.keysym.sym, false);
+						break;
+					case SDL_MOUSEBUTTONDOWN:
+						setMouseState(e.button, true);
+						break;
+					case SDL_MOUSEBUTTONUP:
+						setMouseState(e.button, false);
+						break;
+					}
+				}
+
+				SDL_SetRenderDrawColor(gameRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_RenderClear(gameRenderer);
+			}
 		}
 	}
 
