@@ -4,10 +4,12 @@
 #include <SDL_render.h>
 #include <SDL_surface.h>
 #include <string>
+using namespace std;
 
 enum mapAssets
 {
-	FLOOR,
+	CAFETERIA,
+	OUTSIDE,
 	TOTAL_MAP_ASSETS
 };
 
@@ -28,7 +30,7 @@ public:
 	// Deallocates the current floor texture if it exists.
 	void free();
 	// Loads the texture given by the path as the floor, and modifies the width and height to match that of the floor. Returns false if unsucessful.
-	bool loadFloor(SDL_Renderer* renderer, std::string path);
+	bool loadFloor(SDL_Renderer* renderer, string path);
 	// Renders the map.
 	void render(SDL_Renderer* renderer);
 	// Set the x and y rendering position of the map such that it is between the player's location on the map and the mouse.

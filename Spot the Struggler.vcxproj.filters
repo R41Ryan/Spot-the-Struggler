@@ -15,14 +15,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\Character.h">
+    <ClInclude Include="header\character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="header\Map.h">
+    <ClInclude Include="header\map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\timer.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map.cpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

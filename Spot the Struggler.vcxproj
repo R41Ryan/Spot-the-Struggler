@@ -19,9 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\Character.h" />
-    <ClInclude Include="header\Map.h" />
+    <ClInclude Include="header\character.h" />
+    <ClInclude Include="header\map.h" />
     <ClInclude Include="header\timer.h" />
+    <ClInclude Include="src\map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Spot_the_Struggler.cpp" />
