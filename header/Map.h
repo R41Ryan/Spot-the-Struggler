@@ -9,7 +9,9 @@ using namespace std;
 enum mapAssets
 {
 	CAFETERIA,
-	OUTSIDE,
+	CLASS,
+	FIELD,
+	GYM,
 	TOTAL_MAP_ASSETS
 };
 

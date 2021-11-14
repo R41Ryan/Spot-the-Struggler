@@ -21,6 +21,8 @@ SDL_Texture* redWhiteSprites[TOTAL_EMOTIONS];
 SDL_Texture* yellowGreenSprites[TOTAL_EMOTIONS];
 SDL_Texture* orangePurpleSprites[TOTAL_EMOTIONS];
 
+SDL_Texture* mapTextures[TOTAL_MAP_ASSETS];
+
 bool init() {
 	bool success = true;
 	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO) < 0)
@@ -108,233 +110,279 @@ bool loadCharacterSprites()
 	bool success = true;
 
 	// Load sprites for red white characters
-	if (!loadSprite(&redWhiteSprites[ANGRY], "sprites/char1/angry.png"))
+	if (!loadSprite(&redWhiteSprites[ANGRY], "sprites/character/char1/angry.png"))
 	{
 		printf("Failed to load red white angry character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[ANGRY2], "sprites/char1/angry2.png"))
+	if (!loadSprite(&redWhiteSprites[ANGRY2], "sprites/character/char1/angry2.png"))
 	{
 		printf("Failed to load red white angry2 character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[ANNOYED], "sprites/char1/annoyed.png"))
+	if (!loadSprite(&redWhiteSprites[ANNOYED], "sprites/character/char1/annoyed.png"))
 	{
 		printf("Failed to load red white annoyed character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[BASHFUL], "sprites/char1/bashful.png"))
+	if (!loadSprite(&redWhiteSprites[BASHFUL], "sprites/character/char1/bashful.png"))
 	{
 		printf("Failed to load red white bashful character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[CHILL], "sprites/char1/chill.png"))
+	if (!loadSprite(&redWhiteSprites[CHILL], "sprites/character/char1/chill.png"))
 	{
 		printf("Failed to load red white chill character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[COPE], "sprites/char1/cope.png"))
+	if (!loadSprite(&redWhiteSprites[COPE], "sprites/character/char1/cope.png"))
 	{
 		printf("Failed to load red white cope character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[FLUSTERED], "sprites/char1/flustered.png"))
+	if (!loadSprite(&redWhiteSprites[FLUSTERED], "sprites/character/char1/flustered.png"))
 	{
 		printf("Failed to load red white flustered character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[HAPPY], "sprites/char1/happy.png"))
+	if (!loadSprite(&redWhiteSprites[HAPPY], "sprites/character/char1/happy.png"))
 	{
 		printf("Failed to load red white happy character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[JOYFUL], "sprites/char1/joyful.png"))
+	if (!loadSprite(&redWhiteSprites[JOYFUL], "sprites/character/char1/joyful.png"))
 	{
 		printf("Failed to load red white joyful character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[LAUGHING], "sprites/char1/laughing.png"))
+	if (!loadSprite(&redWhiteSprites[LAUGHING], "sprites/character/char1/laughing.png"))
 	{
 		printf("Failed to load red white laughing character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[NERVOUS], "sprites/char1/nervous.png"))
+	if (!loadSprite(&redWhiteSprites[NERVOUS], "sprites/character/char1/nervous.png"))
 	{
 		printf("Failed to load red white nervous character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[SAD], "sprites/char1/sad.png"))
+	if (!loadSprite(&redWhiteSprites[SAD], "sprites/character/char1/sad.png"))
 	{
 		printf("Failed to load red white sad character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[SICK], "sprites/char1/sick.png"))
+	if (!loadSprite(&redWhiteSprites[SICK], "sprites/character/char1/sick.png"))
 	{
 		printf("Failed to load red white sick character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[SPEECHLESS], "sprites/char1/speechless.png"))
+	if (!loadSprite(&redWhiteSprites[SPEECHLESS], "sprites/character/char1/speechless.png"))
 	{
 		printf("Failed to load red white speechless character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&redWhiteSprites[UPSET], "sprites/char1/upset.png"))
+	if (!loadSprite(&redWhiteSprites[UPSET], "sprites/character/char1/upset.png"))
 	{
 		printf("Failed to load red white upset character sprite.\n");
 		success = false;
 	}
 
 	// Load sprites for yellow green characters
-	if (!loadSprite(&yellowGreenSprites[ANGRY], "sprites/char2/angry.png"))
+	if (!loadSprite(&yellowGreenSprites[ANGRY], "sprites/character/char2/angry.png"))
 	{
 		printf("Failed to load yellow green angry character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[ANGRY2], "sprites/char2/angry2.png"))
+	if (!loadSprite(&yellowGreenSprites[ANGRY2], "sprites/character/char2/angry2.png"))
 	{
 		printf("Failed to load yellow green angry2 character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[ANNOYED], "sprites/char2/annoyed.png"))
+	if (!loadSprite(&yellowGreenSprites[ANNOYED], "sprites/character/char2/annoyed.png"))
 	{
 		printf("Failed to load yellow green annoyed character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[BASHFUL], "sprites/char2/bashful.png"))
+	if (!loadSprite(&yellowGreenSprites[BASHFUL], "sprites/character/char2/bashful.png"))
 	{
 		printf("Failed to load yellow green bashful character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[CHILL], "sprites/char2/chill.png"))
+	if (!loadSprite(&yellowGreenSprites[CHILL], "sprites/character/char2/chill.png"))
 	{
 		printf("Failed to load yellow green chill character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[COPE], "sprites/char2/cope.png"))
+	if (!loadSprite(&yellowGreenSprites[COPE], "sprites/character/char2/cope.png"))
 	{
 		printf("Failed to load yellow green cope character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[FLUSTERED], "sprites/char2/flustered.png"))
+	if (!loadSprite(&yellowGreenSprites[FLUSTERED], "sprites/character/char2/flustered.png"))
 	{
 		printf("Failed to load yellow green flustered character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[HAPPY], "sprites/char2/happy.png"))
+	if (!loadSprite(&yellowGreenSprites[HAPPY], "sprites/character/char2/happy.png"))
 	{
 		printf("Failed to load yellow green happy character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[JOYFUL], "sprites/char2/joyful.png"))
+	if (!loadSprite(&yellowGreenSprites[JOYFUL], "sprites/character/char2/joyful.png"))
 	{
 		printf("Failed to load yellow green joyful character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[LAUGHING], "sprites/char2/laughing.png"))
+	if (!loadSprite(&yellowGreenSprites[LAUGHING], "sprites/character/char2/laughing.png"))
 	{
 		printf("Failed to load yellow green laughing character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[NERVOUS], "sprites/char2/nervous.png"))
+	if (!loadSprite(&yellowGreenSprites[NERVOUS], "sprites/character/char2/nervous.png"))
 	{
 		printf("Failed to load yellow green nervous character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[SAD], "sprites/char2/sad.png"))
+	if (!loadSprite(&yellowGreenSprites[SAD], "sprites/character/char2/sad.png"))
 	{
 		printf("Failed to load yellow green sad character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[SICK], "sprites/char2/sick.png"))
+	if (!loadSprite(&yellowGreenSprites[SICK], "sprites/character/char2/sick.png"))
 	{
 		printf("Failed to load yellow green sick character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[SPEECHLESS], "sprites/char2/speechless.png"))
+	if (!loadSprite(&yellowGreenSprites[SPEECHLESS], "sprites/character/char2/speechless.png"))
 	{
 		printf("Failed to load yellow green speechless character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&yellowGreenSprites[UPSET], "sprites/char2/upset.png"))
+	if (!loadSprite(&yellowGreenSprites[UPSET], "sprites/character/char2/upset.png"))
 	{
 		printf("Failed to load yellow green upset character sprite.\n");
 		success = false;
 	}
 
 	// Load sprites for orange purple characters
-	if (!loadSprite(&orangePurpleSprites[ANGRY], "sprites/char2/angry.png"))
+	if (!loadSprite(&orangePurpleSprites[ANGRY], "sprites/character/char2/angry.png"))
 	{
 		printf("Failed to load orange purple angry character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[ANGRY2], "sprites/char2/angry2.png"))
+	if (!loadSprite(&orangePurpleSprites[ANGRY2], "sprites/character/char2/angry2.png"))
 	{
 		printf("Failed to load orange purple angry2 character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[ANNOYED], "sprites/char2/annoyed.png"))
+	if (!loadSprite(&orangePurpleSprites[ANNOYED], "sprites/character/char2/annoyed.png"))
 	{
 		printf("Failed to load orange purple annoyed character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[BASHFUL], "sprites/char2/bashful.png"))
+	if (!loadSprite(&orangePurpleSprites[BASHFUL], "sprites/character/char2/bashful.png"))
 	{
 		printf("Failed to load orange purple bashful character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[CHILL], "sprites/char2/chill.png"))
+	if (!loadSprite(&orangePurpleSprites[CHILL], "sprites/character/char2/chill.png"))
 	{
 		printf("Failed to load orange purple chill character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[COPE], "sprites/char2/cope.png"))
+	if (!loadSprite(&orangePurpleSprites[COPE], "sprites/character/char2/cope.png"))
 	{
 		printf("Failed to load orange purple cope character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[FLUSTERED], "sprites/char2/flustered.png"))
+	if (!loadSprite(&orangePurpleSprites[FLUSTERED], "sprites/character/char2/flustered.png"))
 	{
 		printf("Failed to load orange purple flustered character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[HAPPY], "sprites/char2/happy.png"))
+	if (!loadSprite(&orangePurpleSprites[HAPPY], "sprites/character/char2/happy.png"))
 	{
 		printf("Failed to load orange purple happy character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[JOYFUL], "sprites/char2/joyful.png"))
+	if (!loadSprite(&orangePurpleSprites[JOYFUL], "sprites/character/char2/joyful.png"))
 	{
 		printf("Failed to load orange purple joyful character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[LAUGHING], "sprites/char2/laughing.png"))
+	if (!loadSprite(&orangePurpleSprites[LAUGHING], "sprites/character/char2/laughing.png"))
 	{
 		printf("Failed to load orange purple laughing character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[NERVOUS], "sprites/char2/nervous.png"))
+	if (!loadSprite(&orangePurpleSprites[NERVOUS], "sprites/character/char2/nervous.png"))
 	{
 		printf("Failed to load orange purple nervous character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[SAD], "sprites/char2/sad.png"))
+	if (!loadSprite(&orangePurpleSprites[SAD], "sprites/character/char2/sad.png"))
 	{
 		printf("Failed to load orange purple sad character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[SICK], "sprites/char2/sick.png"))
+	if (!loadSprite(&orangePurpleSprites[SICK], "sprites/character/char2/sick.png"))
 	{
 		printf("Failed to load orange purple sick character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[SPEECHLESS], "sprites/char2/speechless.png"))
+	if (!loadSprite(&orangePurpleSprites[SPEECHLESS], "sprites/character/char2/speechless.png"))
 	{
 		printf("Failed to load orange purple speechless character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[UPSET], "sprites/char2/upset.png"))
+	if (!loadSprite(&orangePurpleSprites[UPSET], "sprites/character/char2/upset.png"))
 	{
 		printf("Failed to load orange purple upset character sprite.\n");
+		success = false;
+	}
+
+	return success;
+}
+
+bool loadMaps()
+{
+	bool success = true;
+
+	if (!loadSprite(&mapTextures[CAFETERIA], "sprites/map/cafeteria.png"))
+	{
+		printf("Failed to load cafeteria map.\n");
+		success = false;
+	}
+	if (!loadSprite(&mapTextures[CLASS], "sprites/map/class.png"))
+	{
+		printf("Failed to load class map.\n");
+		success = false;
+	}
+	if (!loadSprite(&mapTextures[FIELD], "sprites/map/field.png"))
+	{
+		printf("Failed to load field map.\n");
+		success = false;
+	}
+	if (!loadSprite(&mapTextures[GYM], "sprites/map/gym.png"))
+	{
+		printf("Failed to load gym map.\n");
+		success = false;
+	}
+
+	return success;
+}
+
+bool loadMedia()
+{
+	bool success = true;
+
+	if (!loadCharacterSprites())
+	{
+		printf("Failed to load character sprites");
+		success = false;
+	}
+	if (!loadMaps())
+	{
+		printf("Failed to load maps.");
 		success = false;
 	}
 
@@ -404,9 +452,9 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		if (!loadCharacterSprites())
+		if (!loadMedia())
 		{
-			printf("Failed to load character sprites.\n");
+			printf("Failed to load media.\n");
 		}
 		else
 		{
