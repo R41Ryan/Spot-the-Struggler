@@ -857,23 +857,77 @@ int main(int argc, char* argv[])
 					printf("\nName: %s\n", characters[charactersIndex].getName().c_str());
 					nodes[charactersIndex].render(gameRenderer);
 					printf("Please choose a dialogue option by pressing the corresponding key button.\n");
-					printf("A. How are you?\n");
-					printf("S. What are your plans for the weekend?\n");
+					printf("A. \"How are you?\"\n");
+					printf("S. \"What are your plans for the weekend?\"\n");
+					printf("D. \"You seem to be struggling. Are you okay?\"\n");
 					renderCharacters(location);
 				}
 				if (gameState == 1)
 				{
 					if (keyStates[KEY_A])
 					{
+						if (characters[charactersIndex].isStruggling())
+						{
+							printf("\n%s says, \"Not great. I've been really stressed about college applications and I feel like I won't get into my top school.\"\n",
+								characters[charactersIndex].getName().c_str());
+						}
+						else
+						{
+							srand(time(NULL)); // Initializes random number generator
+							string response;
+							switch (rand() % 3)
+							{
+							case 0:
+								response = "I'm great!";
+							case 1:
+								response = "I'm good thanks. And you?";
+							case 2:
+								response = "I'm not bad, just a bit stressed.";
+							}
+							printf("\n%s says, \"%s\"\n", characters[charactersIndex].getName().c_str(), response.c_str());
+						}
 						gameState = 0;
 					}
 					if (keyStates[KEY_S])
 					{
+						if (characters[charactersIndex].isStruggling())
+						{
+							printf("\n%s says, \"I don't feel like doing anything. I haven't had the energy to do anything social lately.\"\n",
+								characters[charactersIndex].getName().c_str());
+						}
+						else
+						{
+							srand(time(NULL)); // Initializes random number generator
+							string response;
+							switch (rand() % 3)
+							{
+							case 0:
+								response = "I'm great!";
+							case 1:
+								response = "I'm good thanks. And you?";
+							case 2:
+								response = "I am not sure yet, what are you doing?";
+							}
+							printf("\n%s says, \"%s\"\n", characters[charactersIndex].getName().c_str(), response.c_str());
+						}
 						gameState = 0;
 					}
+					if (keyStates[KEY_D])
+					{
+						if (characters[charactersIndex].isStruggling())
+						{
+							printf("\n%s says, \"Yeah, so much has been happening and it's hard to keep all under control. I need help.\"\n",
+								characters[charactersIndex].getName().c_str());
+							gameState = 2;
+						}
+						else
+						{
+							printf("\n%s says, \"What? Oh. No, I'm doing alright.\"\n",
+								characters[charactersIndex].getName().c_str());
+							gameState = 0;
+						}
+					}
 				}
-				
-
 				SDL_RenderPresent(gameRenderer);
 			}
 		}
