@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClInclude Include="header\character.h" />
     <ClInclude Include="header\map.h" />
+    <ClInclude Include="header\node.h" />
     <ClInclude Include="header\player.h" />
     <ClInclude Include="header\timer.h" />
     <ClInclude Include="src\map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Spot_the_Struggler.cpp" />
+    <ClCompile Include="src\node.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\timer.cpp" />
   </ItemGroup>

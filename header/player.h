@@ -25,10 +25,6 @@ private:
 	float yPos;
 
 public:
-	// Constructors
-
-	Player();
-
 	// Functions
 
 	// Changes xPos and yPos depending on the state of keys pressed passed as an array of booleans

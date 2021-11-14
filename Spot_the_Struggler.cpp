@@ -399,6 +399,17 @@ void close()
 	gameRenderer = NULL;
 	gameWindow = NULL;
 
+	for (int i = 0; i < TOTAL_EMOTIONS; i++)
+	{
+		SDL_DestroyTexture(redWhiteSprites[i]);
+		SDL_DestroyTexture(yellowGreenSprites[i]);
+		SDL_DestroyTexture(orangePurpleSprites[i]);
+	}
+	for (int i = 0; i < TOTAL_MAP_ASSETS; i++)
+	{
+		SDL_DestroyTexture(mapTextures[i]);
+	}
+
 	IMG_Quit();
 	TTF_Quit();
 	SDL_Quit();

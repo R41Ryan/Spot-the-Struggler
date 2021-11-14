@@ -23,8 +23,7 @@ class Map
 private:
 	SDL_Texture* floor;
 public:
-	// Constructor
-	Map();
+	// Deconstructor
 	~Map();
 
 	// Functions

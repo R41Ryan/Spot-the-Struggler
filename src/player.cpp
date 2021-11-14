@@ -1,11 +1,5 @@
 #include <player.h>
 
-Player::Player()
-{
-	xPos = 0;
-	yPos = 0;
-}
-
 void Player::move(bool* keyStates)
 {
 	static float speed = 5; // 5 pixels

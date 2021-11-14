@@ -1,10 +1,5 @@
 #include <map.h>
 
-Map::Map()
-{
-	floor = NULL;
-}
-
 Map::~Map()
 {
 	free();
