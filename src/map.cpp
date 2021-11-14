@@ -1,19 +1,5 @@
 #include <map.h>
 
-Map::~Map()
-{
-	free();
-}
-
-void Map::free()
-{
-	if (floor != NULL)
-	{
-		SDL_DestroyTexture(floor);
-		floor = NULL;
-	}
-}
-
 void Map::render(SDL_Renderer* renderer)
 {
 	if (floor != NULL)

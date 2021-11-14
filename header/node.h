@@ -1,6 +1,6 @@
 #pragma once
-#include <map.h>
 #include <character.h>
+#include <SDL_render.h>
 
 class Node {
 private:

@@ -5,6 +5,7 @@
 #include <map.h>
 #include <player.h>
 #include <character.h>
+#include <node.h>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 780;
@@ -22,8 +23,6 @@ SDL_Texture* yellowGreenSprites[TOTAL_EMOTIONS];
 SDL_Texture* orangePurpleSprites[TOTAL_EMOTIONS];
 
 SDL_Texture* mapTextures[TOTAL_MAP_ASSETS];
-
-SDL_Texture* gameMap;
 
 bool init() {
 	bool success = true;
@@ -471,6 +470,12 @@ int main(int argc, char* argv[])
 		}
 		else
 		{
+			Map gameMap;
+			gameMap.setFloor(mapTextures[CAFETERIA]);
+			gameMap.getFloor();
+
+			Player gamePlayer;
+
 			bool quit = false;
 
 			SDL_Event e;
@@ -499,8 +504,13 @@ int main(int argc, char* argv[])
 					}
 				}
 
+				gamePlayer.move(keyStates);
+
 				SDL_SetRenderDrawColor(gameRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gameRenderer);
+
+				gameMap.render(gameRenderer);
+				gamePlayer.render(gameRenderer);
 
 				SDL_RenderPresent(gameRenderer);
 			}

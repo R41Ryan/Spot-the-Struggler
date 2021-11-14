@@ -24,13 +24,13 @@
     <ClInclude Include="header\timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\map.cpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="header\player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="header\node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="header\portal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -45,6 +45,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\character.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\portal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

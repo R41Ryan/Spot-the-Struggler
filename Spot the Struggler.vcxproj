@@ -23,13 +23,16 @@
     <ClInclude Include="header\map.h" />
     <ClInclude Include="header\node.h" />
     <ClInclude Include="header\player.h" />
+    <ClInclude Include="header\portal.h" />
     <ClInclude Include="header\timer.h" />
-    <ClInclude Include="src\map.cpp" />
+    <ClCompile Include="src\character.cpp" />
+    <ClCompile Include="src\map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Spot_the_Struggler.cpp" />
     <ClCompile Include="src\node.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\portal.cpp" />
     <ClCompile Include="src\timer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -94,6 +97,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)\header\;$(SolutionDir)\include\;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\lib\;$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

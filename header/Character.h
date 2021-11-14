@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
+#include <SDL_render.h>
 using namespace std;
 
 const string names[] = { "Wes", "John", "Mary", "Jenna", "Amy", "Sam", "Peter", "Jacob", "David", "Craig", "Ashley", "Madelin", "Madison", "Olivia", "Anthony", "Dylan", "Deborah", "Edward", "Cathy", "Elijah", "Noah", "James", "Vanessa", "Blake", "Ava", "Emily", "Sloan", "Garrett", "Cole", "Alex", "Natalie", "Ricky", "Cailtlin", "Caroline", "Jordan", "Kendall", "Liam", "Will", "Henry", "Lucas" };
+const int CHARACTER_WIDTH = 150;
+const int CHARACTER_HEIGHT = 116;
 
 enum characterColours {
 	RED_WHITE,
@@ -32,8 +35,29 @@ enum characterEmotions {
 
 class Character {
 private:
-	string name;
+	string* name;
 	int colour;
 	int emotion;
-	int friend_level;
+	int friendLevel;
+	SDL_Texture* preferredMap;
+
+public:
+	// Functions
+
+	void free();
+
+	// Getters
+
+	string* getName();
+	int getColour();
+	int getEmotion();
+	int getFriendLevel();
+	SDL_Texture* getPreferredMap();
+
+	// Setters
+
+	void setColour(int colour);
+	void setEmotion(int emotion);
+	void setFriendLevel(int level);
+	void setPreferredMap(SDL_Texture* map);
 };

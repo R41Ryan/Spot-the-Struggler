@@ -15,20 +15,15 @@ enum mapAssets
 	TOTAL_MAP_ASSETS
 };
 
-const int MAP_WIDTH = 1280;
-const int MAP_HEIGHT = 780;
-
 class Map
 {
 private:
 	SDL_Texture* floor;
 public:
-	// Deconstructor
-	~Map();
+	// Constructor
 
 	// Functions
-	// Deallocates the current floor texture if it exists.
-	void free();
+
 	// Renders the map.
 	void render(SDL_Renderer* renderer);
 	// Getter
