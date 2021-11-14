@@ -16,8 +16,6 @@ vector<string> names = { "Wes", "John", "Mary", "Jenna", "Amy", "Sam", "Peter", 
 SDL_Window* gameWindow = NULL;
 SDL_Renderer* gameRenderer = NULL;
 
-TTF_Font* gameFont;
-
 bool keyStates[TOTAL_KEYS];
 bool mouseStates[TOTAL_MOUSE_BUTTONS];
 int mouseX;
@@ -28,6 +26,7 @@ SDL_Texture* yellowGreenSprites[TOTAL_EMOTIONS];
 SDL_Texture* orangePurpleSprites[TOTAL_EMOTIONS];
 
 SDL_Texture* mapTextures[TOTAL_MAP_ASSETS];
+SDL_Texture* gameScreenTexture[3];
 
 Map gameMap;
 Node nodes[40];
@@ -68,20 +67,6 @@ bool init() {
 				{
 					printf("Failed to initialize SDL_IMG. IMG_ERROR: %s\n", IMG_GetError());
 					success = false;
-				}
-
-				if (TTF_Init() == -1)
-				{
-					printf("Failed to initialize SDL_TTF. TTF_ERROR: %s\n", TTF_GetError());
-					success = false;
-				}
-				else
-				{
-					gameFont = TTF_OpenFont("fonts/Nasa21-l23X.ttf", 28);
-					if (gameFont == NULL)
-					{
-						printf("Failed to load Nasa21 Font for game. TTF_ERROR: %s.\n", TTF_GetError());
-					}
 				}
 			}
 		}
@@ -383,19 +368,46 @@ bool loadMaps()
 	return success;
 }
 
+bool loadGameScreens()
+{
+	bool success = true;
+
+	if (!loadSprite(&gameScreenTexture[0], "sprites/gameScreens/1.png"))
+	{
+		printf("Failed to load game start screen.\n");
+		success = false;
+	}
+	if (!loadSprite(&gameScreenTexture[1], "sprites/gameScreens/2.png"))
+	{
+		printf("Failed to load game over screen.\n");
+		success = false;
+	}
+	if (!loadSprite(&gameScreenTexture[2], "sprites/gameScreens/3.png"))
+	{
+		printf("Failed to load game win screen.\n");
+		success = false;
+	}
+
+	return success;
+}
+
 bool loadMedia()
 {
 	bool success = true;
 
 	if (!loadCharacterSprites())
 	{
-		printf("Failed to load character sprites");
+		printf("Failed to load character sprites\n");
 		success = false;
 	}
 	if (!loadMaps())
 	{
-		printf("Failed to load maps.");
+		printf("Failed to load maps.\n");
 		success = false;
+	}
+	if (!loadGameScreens())
+	{
+		printf("Failed to load game screens.\n");
 	}
 
 	return success;
@@ -403,7 +415,6 @@ bool loadMedia()
 
 void close()
 {
-	TTF_CloseFont(gameFont);
 	SDL_DestroyRenderer(gameRenderer);
 	SDL_DestroyWindow(gameWindow);
 	gameRenderer = NULL;
@@ -421,7 +432,6 @@ void close()
 	}
 
 	IMG_Quit();
-	TTF_Quit();
 	SDL_Quit();
 }
 
@@ -443,6 +453,9 @@ void setKeyState(SDL_Keycode sym, bool state)
 		break;
 	case SDLK_p:
 		keyStates[KEY_P] = state;
+		break;
+	case SDLK_SPACE:
+		keyStates[KEY_SPACE] = state;
 		break;
 	}
 }
@@ -801,9 +814,11 @@ int main(int argc, char* argv[])
 			setNodes();
 			randomizeCharacters();
 
-			int charactersIndex;
+			int charactersIndex = -1;
 			int location = CAFETERIA;
-			int gameState = 0;
+			int gameState = 2;	// 0 = Navigating the maps and choosing character, 1 = Character chosen, awaiting input, 
+								// 2 = Game start screen, 3 = Game over screen, 4 = Game win screen
+			int chances = 10;
 
 			bool quit = false;
 
@@ -841,6 +856,42 @@ int main(int argc, char* argv[])
 						break;
 					}
 				}
+				if (gameState == 2)
+				{
+					SDL_RenderCopy(gameRenderer, gameScreenTexture[0], NULL, NULL);
+					if (keyStates[KEY_SPACE])
+					{
+						randomizeCharacters();
+						gameState = 0;
+						charactersIndex = -1;
+						location = CAFETERIA;
+						chances = 10;
+					}
+				}
+				if (gameState == 3)
+				{
+					SDL_RenderCopy(gameRenderer, gameScreenTexture[1], NULL, NULL);
+					if (keyStates[KEY_SPACE])
+					{
+						randomizeCharacters();
+						gameState = 0;
+						charactersIndex = -1;
+						location = CAFETERIA;
+						chances = 10;
+					}
+				}
+				if (gameState == 4)
+				{
+					SDL_RenderCopy(gameRenderer, gameScreenTexture[2], NULL, NULL);
+					if (keyStates[KEY_SPACE])
+					{
+						randomizeCharacters();
+						gameState = 0;
+						charactersIndex = -1;
+						location = CAFETERIA;
+						chances = 10;
+					}
+				}
 				if (gameState == 0)
 				{
 					SDL_SetRenderDrawColor(gameRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -875,18 +926,17 @@ int main(int argc, char* argv[])
 						{
 							srand(time(NULL)); // Initializes random number generator
 							string response;
-							switch (rand() % 3)
-							{
-							case 0:
+							int random = rand() % 90;
+							if (random < 30)
 								response = "I'm great!";
-							case 1:
+							else if (random < 60)
 								response = "I'm good thanks. And you?";
-							case 2:
+							else
 								response = "I'm not bad, just a bit stressed.";
-							}
 							printf("\n%s says, \"%s\"\n", characters[charactersIndex].getName().c_str(), response.c_str());
 						}
 						gameState = 0;
+						chances--;
 					}
 					if (keyStates[KEY_S])
 					{
@@ -899,18 +949,17 @@ int main(int argc, char* argv[])
 						{
 							srand(time(NULL)); // Initializes random number generator
 							string response;
-							switch (rand() % 3)
-							{
-							case 0:
-								response = "I'm great!";
-							case 1:
-								response = "I'm good thanks. And you?";
-							case 2:
+							int random = rand() % 90;
+							if (random < 30)
+								response = "Nothing.";
+							else if (random < 60)
+								response = "I was thinking about going to the party, are you going?";
+							else
 								response = "I am not sure yet, what are you doing?";
-							}
 							printf("\n%s says, \"%s\"\n", characters[charactersIndex].getName().c_str(), response.c_str());
 						}
 						gameState = 0;
+						chances--;
 					}
 					if (keyStates[KEY_D])
 					{
@@ -918,14 +967,19 @@ int main(int argc, char* argv[])
 						{
 							printf("\n%s says, \"Yeah, so much has been happening and it's hard to keep all under control. I need help.\"\n",
 								characters[charactersIndex].getName().c_str());
-							gameState = 2;
+							gameState = 4;
 						}
 						else
 						{
 							printf("\n%s says, \"What? Oh. No, I'm doing alright.\"\n",
 								characters[charactersIndex].getName().c_str());
 							gameState = 0;
+							chances -= 2;
 						}
+					}
+					if (chances <= 0)
+					{
+						gameState = 3;
 					}
 				}
 				SDL_RenderPresent(gameRenderer);
