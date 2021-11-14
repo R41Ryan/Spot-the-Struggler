@@ -818,7 +818,7 @@ int main(int argc, char* argv[])
 			int location = CAFETERIA;
 			int gameState = 2;	// 0 = Navigating the maps and choosing character, 1 = Character chosen, awaiting input, 
 								// 2 = Game start screen, 3 = Game over screen, 4 = Game win screen
-			int chances = 10;
+			int chances = 20;
 
 			bool quit = false;
 
@@ -865,7 +865,7 @@ int main(int argc, char* argv[])
 						gameState = 0;
 						charactersIndex = -1;
 						location = CAFETERIA;
-						chances = 10;
+						chances = 20;
 					}
 				}
 				if (gameState == 3)
@@ -877,7 +877,7 @@ int main(int argc, char* argv[])
 						gameState = 0;
 						charactersIndex = -1;
 						location = CAFETERIA;
-						chances = 10;
+						chances = 20;
 					}
 				}
 				if (gameState == 4)
@@ -889,7 +889,7 @@ int main(int argc, char* argv[])
 						gameState = 0;
 						charactersIndex = -1;
 						location = CAFETERIA;
-						chances = 10;
+						chances = 20;
 					}
 				}
 				if (gameState == 0)
