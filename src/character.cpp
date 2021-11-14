@@ -2,7 +2,7 @@
 
 void Character::free()
 {
-	name = NULL;
+	
 }
 
 void Character::incrementFriendLevel(int increment)
@@ -21,7 +21,7 @@ void Character::incrementFriendLevel(int increment)
 	}
 }
 
-string* Character::getName()
+string Character::getName()
 {
 	return name;
 }
@@ -49,6 +49,11 @@ SDL_Texture* Character::getPreferredMap()
 bool Character::isStruggling()
 {
 	return struggling;
+}
+
+void Character::setName(string name)
+{
+	this->name = name;
 }
 
 void Character::setColour(int colour)

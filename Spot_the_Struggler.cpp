@@ -10,6 +10,7 @@
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 780;
+const string names[] = { "Wes", "John", "Mary", "Jenna", "Amy", "Sam", "Peter", "Jacob", "David", "Craig", "Ashley", "Madelin", "Madison", "Olivia", "Anthony", "Dylan", "Deborah", "Edward", "Cathy", "Elijah", "Noah", "James", "Vanessa", "Blake", "Ava", "Emily", "Sloan", "Garrett", "Cole", "Alex", "Natalie", "Ricky", "Cailtlin", "Caroline", "Jordan", "Kendall", "Liam", "Will", "Henry", "Lucas" };
 
 SDL_Window* gameWindow = NULL;
 SDL_Renderer* gameRenderer = NULL;
@@ -274,77 +275,77 @@ bool loadCharacterSprites()
 	}
 
 	// Load sprites for orange purple characters
-	if (!loadSprite(&orangePurpleSprites[ANGRY], "sprites/character/char2/angry.png"))
+	if (!loadSprite(&orangePurpleSprites[ANGRY], "sprites/character/char3/angry.png"))
 	{
 		printf("Failed to load orange purple angry character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[ANGRY2], "sprites/character/char2/angry2.png"))
+	if (!loadSprite(&orangePurpleSprites[ANGRY2], "sprites/character/char3/angry2.png"))
 	{
 		printf("Failed to load orange purple angry2 character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[ANNOYED], "sprites/character/char2/annoyed.png"))
+	if (!loadSprite(&orangePurpleSprites[ANNOYED], "sprites/character/char3/annoyed.png"))
 	{
 		printf("Failed to load orange purple annoyed character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[BASHFUL], "sprites/character/char2/bashful.png"))
+	if (!loadSprite(&orangePurpleSprites[BASHFUL], "sprites/character/char3/bashful.png"))
 	{
 		printf("Failed to load orange purple bashful character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[CHILL], "sprites/character/char2/chill.png"))
+	if (!loadSprite(&orangePurpleSprites[CHILL], "sprites/character/char3/chill.png"))
 	{
 		printf("Failed to load orange purple chill character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[COPE], "sprites/character/char2/cope.png"))
+	if (!loadSprite(&orangePurpleSprites[COPE], "sprites/character/char3/cope.png"))
 	{
 		printf("Failed to load orange purple cope character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[FLUSTERED], "sprites/character/char2/flustered.png"))
+	if (!loadSprite(&orangePurpleSprites[FLUSTERED], "sprites/character/char3/flustered.png"))
 	{
 		printf("Failed to load orange purple flustered character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[HAPPY], "sprites/character/char2/happy.png"))
+	if (!loadSprite(&orangePurpleSprites[HAPPY], "sprites/character/char3/happy.png"))
 	{
 		printf("Failed to load orange purple happy character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[JOYFUL], "sprites/character/char2/joyful.png"))
+	if (!loadSprite(&orangePurpleSprites[JOYFUL], "sprites/character/char3/joyful.png"))
 	{
 		printf("Failed to load orange purple joyful character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[LAUGHING], "sprites/character/char2/laughing.png"))
+	if (!loadSprite(&orangePurpleSprites[LAUGHING], "sprites/character/char3/laughing.png"))
 	{
 		printf("Failed to load orange purple laughing character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[NERVOUS], "sprites/character/char2/nervous.png"))
+	if (!loadSprite(&orangePurpleSprites[NERVOUS], "sprites/character/char3/nervous.png"))
 	{
 		printf("Failed to load orange purple nervous character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[SAD], "sprites/character/char2/sad.png"))
+	if (!loadSprite(&orangePurpleSprites[SAD], "sprites/character/char3/sad.png"))
 	{
 		printf("Failed to load orange purple sad character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[SICK], "sprites/character/char2/sick.png"))
+	if (!loadSprite(&orangePurpleSprites[SICK], "sprites/character/char3/sick.png"))
 	{
 		printf("Failed to load orange purple sick character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[SPEECHLESS], "sprites/character/char2/speechless.png"))
+	if (!loadSprite(&orangePurpleSprites[SPEECHLESS], "sprites/character/char3/speechless.png"))
 	{
 		printf("Failed to load orange purple speechless character sprite.\n");
 		success = false;
 	}
-	if (!loadSprite(&orangePurpleSprites[UPSET], "sprites/character/char2/upset.png"))
+	if (!loadSprite(&orangePurpleSprites[UPSET], "sprites/character/char3/upset.png"))
 	{
 		printf("Failed to load orange purple upset character sprite.\n");
 		success = false;
@@ -460,6 +461,7 @@ void setMouseState(SDL_MouseButtonEvent button, bool state)
 
 void setPortals()
 {
+	// Cafeteria Portals
 	portals[0].setStartMap(mapTextures[CAFETERIA]);
 	portals[0].setEndMap(mapTextures[CLASS]);
 	portals[0].setX(0);
@@ -475,20 +477,114 @@ void setPortals()
 	portals[2].setX(SCREEN_WIDTH / 2 - PORTAL_SIDE / 2);
 	portals[2].setY(0);
 
+	// Class Portal
 	portals[3].setStartMap(mapTextures[CLASS]);
 	portals[3].setEndMap(mapTextures[CAFETERIA]);
 	portals[3].setX(1090 - PORTAL_SIDE / 2);
 	portals[3].setY(100 - PORTAL_SIDE / 2);
 
+	// Gym Portal
 	portals[4].setStartMap(mapTextures[GYM]);
 	portals[4].setEndMap(mapTextures[CAFETERIA]);
 	portals[4].setX(0);
 	portals[4].setY(SCREEN_HEIGHT / 2 - PORTAL_SIDE / 2);
 
+	// Field Portal
 	portals[5].setStartMap(mapTextures[FIELD]);
 	portals[5].setEndMap(mapTextures[CAFETERIA]);
 	portals[5].setX(SCREEN_WIDTH / 2 - PORTAL_SIDE / 2);
 	portals[5].setY(SCREEN_HEIGHT - PORTAL_SIDE);
+}
+
+void setNodes()
+{
+	// Cafeteria Nodes
+	nodes[0].setX(150 - CHARACTER_WIDTH / 2);
+	nodes[0].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[1].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[1].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[2].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[2].setY(50 - CHARACTER_HEIGHT / 2);
+	nodes[3].setX(850 - CHARACTER_WIDTH / 2);
+	nodes[3].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[4].setX(1075 - CHARACTER_WIDTH / 2);
+	nodes[4].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[5].setX(725 - CHARACTER_WIDTH / 2);
+	nodes[5].setY(450 - CHARACTER_HEIGHT / 2);
+	nodes[6].setX(500 - CHARACTER_WIDTH / 2);
+	nodes[6].setY(450 - CHARACTER_HEIGHT / 2);
+	nodes[7].setX(725 - CHARACTER_WIDTH / 2);
+	nodes[7].setY(325 - CHARACTER_HEIGHT / 2);
+	nodes[8].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[8].setY(725 - CHARACTER_HEIGHT / 2);
+	nodes[9].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[9].setY(600 - CHARACTER_HEIGHT / 2);
+
+	// Class Nodes
+	nodes[10].setX(475 - CHARACTER_WIDTH / 2);
+	nodes[10].setY(225 - CHARACTER_HEIGHT / 2);
+	nodes[11].setX(475 - CHARACTER_WIDTH / 2);
+	nodes[11].setY(350 - CHARACTER_HEIGHT / 2);
+	nodes[12].setX(475 - CHARACTER_WIDTH / 2);
+	nodes[12].setY(525 - CHARACTER_HEIGHT / 2);
+	nodes[13].setX(475 - CHARACTER_WIDTH / 2);
+	nodes[13].setY(650 - CHARACTER_HEIGHT / 2);
+	nodes[14].setX(700 - CHARACTER_WIDTH / 2);
+	nodes[14].setY(225 - CHARACTER_HEIGHT / 2);
+	nodes[15].setX(700 - CHARACTER_WIDTH / 2);
+	nodes[15].setY(525 - CHARACTER_HEIGHT / 2);
+	nodes[16].setX(700 - CHARACTER_WIDTH / 2);
+	nodes[16].setY(650 - CHARACTER_HEIGHT / 2);
+	nodes[17].setX(925 - CHARACTER_WIDTH / 2);
+	nodes[17].setY(350 - CHARACTER_HEIGHT / 2);
+	nodes[18].setX(925 - CHARACTER_WIDTH / 2);
+	nodes[18].setY(525 - CHARACTER_HEIGHT / 2);
+	nodes[19].setX(925 - CHARACTER_WIDTH / 2);
+	nodes[19].setY(650 - CHARACTER_HEIGHT / 2);
+
+	// Gym Nodes
+	nodes[20].setX(150 - CHARACTER_WIDTH / 2);
+	nodes[20].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[21].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[21].setY(275 - CHARACTER_HEIGHT / 2);
+	nodes[22].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[22].setY(100 - CHARACTER_HEIGHT / 2);
+	nodes[23].setX(850 - CHARACTER_WIDTH / 2);
+	nodes[23].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[24].setX(1075 - CHARACTER_WIDTH / 2);
+	nodes[24].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[25].setX(850 - CHARACTER_WIDTH / 2);
+	nodes[25].setY(550 - CHARACTER_HEIGHT / 2);
+	nodes[26].setX(500 - CHARACTER_WIDTH / 2);
+	nodes[26].setY(450 - CHARACTER_HEIGHT / 2);
+	nodes[27].setX(725 - CHARACTER_WIDTH / 2);
+	nodes[27].setY(325 - CHARACTER_HEIGHT / 2);
+	nodes[28].setX(200 - CHARACTER_WIDTH / 2);
+	nodes[28].setY(700 - CHARACTER_HEIGHT / 2);
+	nodes[29].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[29].setY(600 - CHARACTER_HEIGHT / 2);
+
+	// Field Nodes
+	nodes[30].setX(150 - CHARACTER_WIDTH / 2);
+	nodes[30].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[31].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[31].setY(275 - CHARACTER_HEIGHT / 2);
+	nodes[32].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[32].setY(100 - CHARACTER_HEIGHT / 2);
+	nodes[33].setX(850 - CHARACTER_WIDTH / 2);
+	nodes[33].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[34].setX(1075 - CHARACTER_WIDTH / 2);
+	nodes[34].setY(175 - CHARACTER_HEIGHT / 2);
+	nodes[35].setX(850 - CHARACTER_WIDTH / 2);
+	nodes[35].setY(550 - CHARACTER_HEIGHT / 2);
+	nodes[36].setX(500 - CHARACTER_WIDTH / 2);
+	nodes[36].setY(450 - CHARACTER_HEIGHT / 2);
+	nodes[37].setX(725 - CHARACTER_WIDTH / 2);
+	nodes[37].setY(325 - CHARACTER_HEIGHT / 2);
+	nodes[38].setX(200 - CHARACTER_WIDTH / 2);
+	nodes[38].setY(700 - CHARACTER_HEIGHT / 2);
+	nodes[39].setX(375 - CHARACTER_WIDTH / 2);
+	nodes[39].setY(600 - CHARACTER_HEIGHT / 2);
 }
 
 void renderPortals(int location)
@@ -509,6 +605,94 @@ void renderPortals(int location)
 		break;
 	case FIELD:
 		portals[5].render(gameRenderer);
+	}
+}
+
+void renderNodes(int location)
+{
+	switch (location)
+	{
+	case CAFETERIA:
+		for (int i = 0; i < 10; i++)
+		{
+			nodes[i].render(gameRenderer);
+		}
+		break;
+	case CLASS:
+		for (int i = 10; i < 20; i++)
+		{
+			nodes[i].render(gameRenderer);
+		}
+		break;
+	case GYM:
+		for (int i = 20; i < 30; i++)
+		{
+			nodes[i].render(gameRenderer);
+		}
+		break;
+	case FIELD:
+		for (int i = 30; i < 40; i++)
+		{
+			nodes[i].render(gameRenderer);
+		}
+	}
+}
+
+void renderCharacters(int location)
+{
+	switch (location)
+	{
+	case CAFETERIA:
+		for (int i = 0; i < 10; i++)
+		{
+			SDL_Rect renderClip = { nodes[i].getX(), nodes[i].getY(), CHARACTER_WIDTH, CHARACTER_HEIGHT };
+
+			if (characters[i].getColour() == RED_WHITE)
+				SDL_RenderCopy(gameRenderer, redWhiteSprites[characters[i].getEmotion()], NULL, &renderClip);
+			else if (characters[i].getColour() == YELLOW_GREEN)
+				SDL_RenderCopy(gameRenderer, yellowGreenSprites[characters[i].getEmotion()], NULL, &renderClip);
+			else if (characters[i].getColour() == ORANGE_PURPLE)
+				SDL_RenderCopy(gameRenderer, orangePurpleSprites[characters[i].getEmotion()], NULL, &renderClip);
+		}
+		break;
+	case CLASS:
+		for (int i = 10; i < 20; i++)
+		{
+			SDL_Rect renderClip = { nodes[i].getX(), nodes[i].getY(), CHARACTER_WIDTH, CHARACTER_HEIGHT };
+
+			if (characters[i].getColour() == RED_WHITE)
+				SDL_RenderCopy(gameRenderer, redWhiteSprites[characters[i].getEmotion()], NULL, &renderClip);
+			else if (characters[i].getColour() == YELLOW_GREEN)
+				SDL_RenderCopy(gameRenderer, yellowGreenSprites[characters[i].getEmotion()], NULL, &renderClip);
+			else if (characters[i].getColour() == ORANGE_PURPLE)
+				SDL_RenderCopy(gameRenderer, orangePurpleSprites[characters[i].getEmotion()], NULL, &renderClip);
+		}
+		break;
+	case GYM:
+		for (int i = 20; i < 30; i++)
+		{
+			SDL_Rect renderClip = { nodes[i].getX(), nodes[i].getY(), CHARACTER_WIDTH, CHARACTER_HEIGHT };
+
+			if (characters[i].getColour() == RED_WHITE)
+				SDL_RenderCopy(gameRenderer, redWhiteSprites[characters[i].getEmotion()], NULL, &renderClip);
+			else if (characters[i].getColour() == YELLOW_GREEN)
+				SDL_RenderCopy(gameRenderer, yellowGreenSprites[characters[i].getEmotion()], NULL, &renderClip);
+			else if (characters[i].getColour() == ORANGE_PURPLE)
+				SDL_RenderCopy(gameRenderer, orangePurpleSprites[characters[i].getEmotion()], NULL, &renderClip);
+		}
+		break;
+	case FIELD:
+		for (int i = 30; i < 40; i++)
+		{
+			SDL_Rect renderClip = { nodes[i].getX(), nodes[i].getY(), CHARACTER_WIDTH, CHARACTER_HEIGHT };
+
+			if (characters[i].getColour() == RED_WHITE)
+				SDL_RenderCopy(gameRenderer, redWhiteSprites[characters[i].getEmotion()], NULL, &renderClip);
+			else if (characters[i].getColour() == YELLOW_GREEN)
+				SDL_RenderCopy(gameRenderer, yellowGreenSprites[characters[i].getEmotion()], NULL, &renderClip);
+			else if (characters[i].getColour() == ORANGE_PURPLE)
+				SDL_RenderCopy(gameRenderer, orangePurpleSprites[characters[i].getEmotion()], NULL, &renderClip);
+		}
 	}
 }
 
@@ -538,10 +722,27 @@ void portalClick(int& location)
 	}
 }
 
-int main(int argc, char* argv[])
+void randomizeCharacters()
 {
 	srand(time(NULL)); // Initializes random number generator
+	int randomIndex;
+	for (int i = 0; i < 40; i++)
+	{
+		randomIndex = rand() % 40;
+		characters[i].setName(names[randomIndex]);
+		randomIndex = rand() % TOTAL_COLOURS;
+		characters[i].setColour(randomIndex);
+		randomIndex = rand() % TOTAL_EMOTIONS;
+		characters[i].setEmotion(randomIndex);
+		characters[i].setStruggling(false);
+	}
+	srand(time(NULL)); // Initializes random number generator
+	randomIndex = rand() % 40;
+	characters[randomIndex].setStruggling(true);
+}
 
+int main(int argc, char* argv[])
+{
 	for (int i = 0; i < TOTAL_KEYS; i++)
 	{
 		keyStates[i] = false;
@@ -560,8 +761,10 @@ int main(int argc, char* argv[])
 		else
 		{
 			setPortals();
+			setNodes();
+			randomizeCharacters();
 
-			int location = CAFETERIA;
+			int location = GYM;
 
 			bool quit = false;
 
@@ -599,6 +802,8 @@ int main(int argc, char* argv[])
 				gameMap.setFloor(mapTextures[location]);
 				gameMap.render(gameRenderer);
 				renderPortals(location);
+				// renderNodes(location);
+				renderCharacters(location);
 
 				SDL_RenderPresent(gameRenderer);
 			}
