@@ -6,8 +6,8 @@
 #include <player.h>
 #include <character.h>
 
-const int SCREEN_WIDTH = 1200;
-const int SCREEN_HEIGHT = 800;
+const int SCREEN_WIDTH = 1280;
+const int SCREEN_HEIGHT = 780;
 
 SDL_Window* gameWindow = NULL;
 SDL_Renderer* gameRenderer = NULL;
@@ -22,6 +22,8 @@ SDL_Texture* yellowGreenSprites[TOTAL_EMOTIONS];
 SDL_Texture* orangePurpleSprites[TOTAL_EMOTIONS];
 
 SDL_Texture* mapTextures[TOTAL_MAP_ASSETS];
+
+SDL_Texture* gameMap;
 
 bool init() {
 	bool success = true;
@@ -488,6 +490,8 @@ int main(int argc, char* argv[])
 
 				SDL_SetRenderDrawColor(gameRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gameRenderer);
+
+				SDL_RenderPresent(gameRenderer);
 			}
 		}
 	}

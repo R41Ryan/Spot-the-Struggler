@@ -36,5 +36,4 @@ private:
 	int colour;
 	int emotion;
 	int friend_level;
-
 };

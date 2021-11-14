@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Spot_the_Struggler.cpp" />
+    <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\timer.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
