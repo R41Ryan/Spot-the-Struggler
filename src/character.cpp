@@ -5,6 +5,22 @@ void Character::free()
 	name = NULL;
 }
 
+void Character::incrementFriendLevel(int increment)
+{
+	if (friendLevel + increment > 100)
+	{
+		friendLevel = 100;
+	}
+	else if (friendLevel + increment < 0)
+	{
+		friendLevel = 0;
+	}
+	else
+	{
+		friendLevel += increment;
+	}
+}
+
 string* Character::getName()
 {
 	return name;
@@ -30,6 +46,11 @@ SDL_Texture* Character::getPreferredMap()
 	return preferredMap;
 }
 
+bool Character::isStruggling()
+{
+	return struggling;
+}
+
 void Character::setColour(int colour)
 {
 	this->colour = colour;
@@ -48,4 +69,9 @@ void Character::setFriendLevel(int level)
 void Character::setPreferredMap(SDL_Texture* map)
 {
 	preferredMap = map;
+}
+
+void Character::setStruggling(bool state)
+{
+	struggling = state;
 }

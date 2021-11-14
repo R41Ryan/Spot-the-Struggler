@@ -70,8 +70,8 @@ void Player::move(bool* keyStates)
 void Player::render(SDL_Renderer* renderer)
 {
 	SDL_FRect renderClip = {xPos - PLAYER_SIDE / 2, yPos - PLAYER_SIDE / 2, PLAYER_SIDE, PLAYER_SIDE};
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0xFF);
-	SDL_RenderDrawRectF(renderer, &renderClip);
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0, 0xFF);
+	SDL_RenderFillRectF(renderer, &renderClip);
 }
 
 float Player::getX()

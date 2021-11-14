@@ -15,6 +15,13 @@ bool Portal::isInPortal(int x, int y)
 	return false;
 }
 
+void Portal::render(SDL_Renderer* renderer)
+{
+	SDL_Rect renderClip = { xPos, yPos, PORTAL_SIDE, PORTAL_SIDE };
+	SDL_SetRenderDrawColor(renderer, 0, 0xFF, 0, 0xFF);
+	SDL_RenderFillRect(renderer, &renderClip);
+}
+
 SDL_Texture* Portal::getStartMap()
 {
 	return startMap;

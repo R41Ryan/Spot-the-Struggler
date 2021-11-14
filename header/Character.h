@@ -40,11 +40,13 @@ private:
 	int emotion;
 	int friendLevel;
 	SDL_Texture* preferredMap;
+	bool struggling;
 
 public:
 	// Functions
 
 	void free();
+	void incrementFriendLevel(int increment);
 
 	// Getters
 
@@ -53,6 +55,7 @@ public:
 	int getEmotion();
 	int getFriendLevel();
 	SDL_Texture* getPreferredMap();
+	bool isStruggling();
 
 	// Setters
 
@@ -60,4 +63,5 @@ public:
 	void setEmotion(int emotion);
 	void setFriendLevel(int level);
 	void setPreferredMap(SDL_Texture* map);
+	void setStruggling(bool state);
 };

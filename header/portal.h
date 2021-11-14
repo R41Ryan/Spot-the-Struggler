@@ -2,7 +2,7 @@
 #include <map.h>
 #include <SDL_render.h>
 
-const int PORTAL_SIDE = 160;
+const int PORTAL_SIDE = 50;
 
 class Portal {
 private:
@@ -16,6 +16,8 @@ public:
 	
 	// Returns true if the given coordinates are within the boundaries of the portal
 	bool isInPortal(int x, int y);
+	// Renders the portal
+	void render(SDL_Renderer* renderer);
 
 	// Getters
 

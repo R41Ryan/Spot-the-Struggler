@@ -6,6 +6,7 @@
 #include <player.h>
 #include <character.h>
 #include <node.h>
+#include <portal.h>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 780;
@@ -17,12 +18,20 @@ TTF_Font* gameFont;
 
 bool keyStates[TOTAL_KEYS];
 bool mouseStates[TOTAL_MOUSE_BUTTONS];
+int mouseX;
+int mouseY;
 
 SDL_Texture* redWhiteSprites[TOTAL_EMOTIONS];
 SDL_Texture* yellowGreenSprites[TOTAL_EMOTIONS];
 SDL_Texture* orangePurpleSprites[TOTAL_EMOTIONS];
 
 SDL_Texture* mapTextures[TOTAL_MAP_ASSETS];
+
+Map gameMap;
+Node nodes[40];
+Portal portals[6];
+Character characters[40];
+Player gamePlayer;
 
 bool init() {
 	bool success = true;
@@ -449,6 +458,86 @@ void setMouseState(SDL_MouseButtonEvent button, bool state)
 	}
 }
 
+void setPortals()
+{
+	portals[0].setStartMap(mapTextures[CAFETERIA]);
+	portals[0].setEndMap(mapTextures[CLASS]);
+	portals[0].setX(0);
+	portals[0].setY(SCREEN_HEIGHT / 2 - PORTAL_SIDE / 2);
+
+	portals[1].setStartMap(mapTextures[CAFETERIA]);
+	portals[1].setEndMap(mapTextures[GYM]);
+	portals[1].setX(SCREEN_WIDTH - PORTAL_SIDE);
+	portals[1].setY(SCREEN_HEIGHT / 2 - PORTAL_SIDE / 2);
+
+	portals[2].setStartMap(mapTextures[CAFETERIA]);
+	portals[2].setEndMap(mapTextures[FIELD]);
+	portals[2].setX(SCREEN_WIDTH / 2 - PORTAL_SIDE / 2);
+	portals[2].setY(0);
+
+	portals[3].setStartMap(mapTextures[CLASS]);
+	portals[3].setEndMap(mapTextures[CAFETERIA]);
+	portals[3].setX(1090 - PORTAL_SIDE / 2);
+	portals[3].setY(100 - PORTAL_SIDE / 2);
+
+	portals[4].setStartMap(mapTextures[GYM]);
+	portals[4].setEndMap(mapTextures[CAFETERIA]);
+	portals[4].setX(0);
+	portals[4].setY(SCREEN_HEIGHT / 2 - PORTAL_SIDE / 2);
+
+	portals[5].setStartMap(mapTextures[FIELD]);
+	portals[5].setEndMap(mapTextures[CAFETERIA]);
+	portals[5].setX(SCREEN_WIDTH / 2 - PORTAL_SIDE / 2);
+	portals[5].setY(SCREEN_HEIGHT - PORTAL_SIDE);
+}
+
+void renderPortals(int location)
+{
+	switch (location)
+	{
+	case CAFETERIA:
+		for (int i = 0; i < 3; i++)
+		{
+			portals[i].render(gameRenderer);
+		}
+		break;
+	case CLASS:
+		portals[3].render(gameRenderer);
+		break;
+	case GYM:
+		portals[4].render(gameRenderer);
+		break;
+	case FIELD:
+		portals[5].render(gameRenderer);
+	}
+}
+
+void portalClick(int& location)
+{
+	switch (location)
+	{
+	case CAFETERIA:
+		if (portals[0].isInPortal(mouseX, mouseY))
+			location = CLASS;
+		if (portals[1].isInPortal(mouseX, mouseY))
+			location = GYM;
+		if (portals[2].isInPortal(mouseX, mouseY))
+			location = FIELD;
+		break;
+	case CLASS:
+		if (portals[3].isInPortal(mouseX, mouseY))
+			location = CAFETERIA;
+		break;
+	case GYM:
+		if (portals[4].isInPortal(mouseX, mouseY))
+			location = CAFETERIA;
+		break;
+	case FIELD:
+		if (portals[5].isInPortal(mouseX, mouseY))
+			location = CAFETERIA;
+	}
+}
+
 int main(int argc, char* argv[])
 {
 	srand(time(NULL)); // Initializes random number generator
@@ -470,11 +559,9 @@ int main(int argc, char* argv[])
 		}
 		else
 		{
-			Map gameMap;
-			gameMap.setFloor(mapTextures[CAFETERIA]);
-			gameMap.getFloor();
+			setPortals();
 
-			Player gamePlayer;
+			int location = CAFETERIA;
 
 			bool quit = false;
 
@@ -482,6 +569,8 @@ int main(int argc, char* argv[])
 
 			while (!quit)
 			{
+				SDL_GetMouseState(&mouseX, &mouseY);
+
 				while (SDL_PollEvent(&e) > 0)
 				{
 					switch (e.type)
@@ -499,18 +588,17 @@ int main(int argc, char* argv[])
 						setMouseState(e.button, true);
 						break;
 					case SDL_MOUSEBUTTONUP:
-						setMouseState(e.button, false);
+						portalClick(location);
 						break;
 					}
 				}
 
-				gamePlayer.move(keyStates);
-
 				SDL_SetRenderDrawColor(gameRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gameRenderer);
 
+				gameMap.setFloor(mapTextures[location]);
 				gameMap.render(gameRenderer);
-				gamePlayer.render(gameRenderer);
+				renderPortals(location);
 
 				SDL_RenderPresent(gameRenderer);
 			}
