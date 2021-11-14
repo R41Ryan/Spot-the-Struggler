@@ -7,10 +7,11 @@
 #include <character.h>
 #include <node.h>
 #include <portal.h>
+#include <vector>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 780;
-const string names[] = { "Wes", "John", "Mary", "Jenna", "Amy", "Sam", "Peter", "Jacob", "David", "Craig", "Ashley", "Madelin", "Madison", "Olivia", "Anthony", "Dylan", "Deborah", "Edward", "Cathy", "Elijah", "Noah", "James", "Vanessa", "Blake", "Ava", "Emily", "Sloan", "Garrett", "Cole", "Alex", "Natalie", "Ricky", "Cailtlin", "Caroline", "Jordan", "Kendall", "Liam", "Will", "Henry", "Lucas" };
+vector<string> names = { "Wes", "John", "Mary", "Jenna", "Amy", "Sam", "Peter", "Jacob", "David", "Craig", "Ashley", "Madelin", "Madison", "Olivia", "Anthony", "Dylan", "Deborah", "Edward", "Cathy", "Elijah", "Noah", "James", "Vanessa", "Blake", "Ava", "Emily", "Sloan", "Garrett", "Cole", "Alex", "Natalie", "Ricky", "Cailtlin", "Caroline", "Jordan", "Kendall", "Liam", "Will", "Henry", "Lucas" };
 
 SDL_Window* gameWindow = NULL;
 SDL_Renderer* gameRenderer = NULL;
@@ -722,6 +723,42 @@ void portalClick(int& location)
 	}
 }
 
+int characterClick(int location)
+{
+	switch (location)
+	{
+	case CAFETERIA:
+		for (int i = 0; i < 10; i++)
+		{
+			if (nodes[i].isInNode(mouseX, mouseY))
+				return i;
+		}
+		break;
+	case CLASS:
+		for (int i = 10; i < 20; i++)
+		{
+			if (nodes[i].isInNode(mouseX, mouseY))
+				return i;
+		}
+		break;
+	case GYM:
+		for (int i = 20; i < 30; i++)
+		{
+			if (nodes[i].isInNode(mouseX, mouseY))
+				return i;
+		}
+		break;
+	case FIELD:
+		for (int i = 20; i < 30; i++)
+		{
+			if (nodes[i].isInNode(mouseX, mouseY))
+				return i;
+		}
+	}
+
+	return -1;
+}
+
 void randomizeCharacters()
 {
 	srand(time(NULL)); // Initializes random number generator
@@ -729,7 +766,7 @@ void randomizeCharacters()
 	for (int i = 0; i < 40; i++)
 	{
 		randomIndex = rand() % 40;
-		characters[i].setName(names[randomIndex]);
+		characters[i].setName(names[randomIndex].c_str());
 		randomIndex = rand() % TOTAL_COLOURS;
 		characters[i].setColour(randomIndex);
 		randomIndex = rand() % TOTAL_EMOTIONS;
@@ -764,7 +801,9 @@ int main(int argc, char* argv[])
 			setNodes();
 			randomizeCharacters();
 
-			int location = GYM;
+			int charactersIndex;
+			int location = CAFETERIA;
+			int gameState = 0;
 
 			bool quit = false;
 
@@ -773,6 +812,9 @@ int main(int argc, char* argv[])
 			while (!quit)
 			{
 				SDL_GetMouseState(&mouseX, &mouseY);
+				if (gameState == 0) {
+					charactersIndex = -1;
+				}
 
 				while (SDL_PollEvent(&e) > 0)
 				{
@@ -791,19 +833,46 @@ int main(int argc, char* argv[])
 						setMouseState(e.button, true);
 						break;
 					case SDL_MOUSEBUTTONUP:
-						portalClick(location);
+						if (gameState == 0)
+						{
+							portalClick(location);
+							charactersIndex = characterClick(location);
+						}
 						break;
 					}
 				}
+				if (gameState == 0)
+				{
+					SDL_SetRenderDrawColor(gameRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+					SDL_RenderClear(gameRenderer);
 
-				SDL_SetRenderDrawColor(gameRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
-				SDL_RenderClear(gameRenderer);
-
-				gameMap.setFloor(mapTextures[location]);
-				gameMap.render(gameRenderer);
-				renderPortals(location);
-				// renderNodes(location);
-				renderCharacters(location);
+					gameMap.setFloor(mapTextures[location]);
+					gameMap.render(gameRenderer);
+					renderPortals(location);
+					renderCharacters(location);
+				}
+				if (charactersIndex != -1 && gameState == 0)
+				{
+					gameState = 1;
+					printf("\nName: %s\n", characters[charactersIndex].getName().c_str());
+					nodes[charactersIndex].render(gameRenderer);
+					printf("Please choose a dialogue option by pressing the corresponding key button.\n");
+					printf("A. How are you?\n");
+					printf("S. What are your plans for the weekend?\n");
+					renderCharacters(location);
+				}
+				if (gameState == 1)
+				{
+					if (keyStates[KEY_A])
+					{
+						gameState = 0;
+					}
+					if (keyStates[KEY_S])
+					{
+						gameState = 0;
+					}
+				}
+				
 
 				SDL_RenderPresent(gameRenderer);
 			}

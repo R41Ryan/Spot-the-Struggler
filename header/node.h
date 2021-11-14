@@ -11,7 +11,10 @@ private:
 public:
 	// Functions
 	
+	// Renders the outline of the node
 	void render(SDL_Renderer* renderer);
+	// Returns true if the given coordinates are within the boundaries of the node
+	bool isInNode(int x, int y);
 
 	// Getters
 
